@@ -1,0 +1,745 @@
+index.html:
+
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MotivaPulse AI</title>
+  
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&amp;display=swap" rel="stylesheet">
+  
+  
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+  
+  
+  <meta name="description" content="MotivaPulse AI: Where AI Precision Meets Human Ingenuity. Comprehensive, reliable, and tailored AI solutions enhanced by human expertise.">
+  <meta name="keywords" content="AI Solutions, Artificial Intelligence, Human-AI Synergy, Business Optimization, Data Analysis, Customer Experience, Virtual Assistance">
+  <meta name="author" content="MotivaPulse AI">
+  
+  
+  <link rel="stylesheet" href="styles.css">
+  
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-p2QKxgH1+KqM9wvG1M4GsuVn0kjB6P05lZRyC78odVHR1K6kK5cG/q1WpR13wB+Rbkfj8FQeXxvS4kdczn0qMg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" integrity="sha512-f8mwTB+Bs8a5c46DEm7HQLcJuHMBaH/UFlcgyetMqqkvTcYg4g5VXsYR71b3qC82lZytjNYvBj2pf0VekA9/FQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js" integrity="sha512-A64Nik4Ql7/W/PJk2RNOmVyC/Chobn5TY08CiKEX50Sdw+33WTOpPJ/63bfWPl0hxiRv1trPs5prKO8CpA7VNQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js" integrity="sha512-K9tDZvc8nQXR1DMuT97sct9f40dilGp97vx7EXjswJA+/mKqJZ8vcZLifZDP+9t08osMLuiIjd4jZ0SM011Q+w==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.5/lottie.min.js" integrity="sha512-0bCDSnaX8FOD9Mq8WbHcDwshXwCB5V4EP+UBu87WQgga2b7lAsuEbaSmIZjH/XEmNhJuhrPbFHemre5HZwrk9w==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
+  
+  
+  <script src="scripts.js" defer></script>
+  
+  
+</head>
+<body>
+  
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  
+  <header>
+    <div class="container">
+      
+      <div class="logo">
+        <a href="#">
+          <img src="images/logo.png" alt="MotivaPulse AI Logo" loading="lazy">
+        </a>
+      </div>
+      
+      
+      <nav>
+        <button id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu" class="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul id="nav-menu" class="nav-menu">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#ai-dilemma">The AI Dilemma</a></li>
+          <li><a href="#our-approach">Our Approach</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#why-choose-us">Why Choose Us</a></li>
+          <li><a href="#about-us">About Us</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      
+      
+      <button id="theme-toggle" aria-label="Toggle light/dark mode">ðŸŒ™</button>
+    </div>
+  </header>
+  
+  
+  <main id="main-content">
+    
+    
+    <section id="hero" class="animate-section">
+      
+      <div id="particles-js"></div>
+      
+      
+      <div class="animated-background">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+          
+          <circle cx="400" cy="300" r="250" stroke="var(--accent-color)" stroke-width="4" fill="none">
+            <animateTransform attributeName="transform" type="rotate" from="0 400 300" to="360 400 300" dur="20s" repeatCount="indefinite" />
+          </circle>
+          <path d="M200 200 L600 400" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+            <animateTransform attributeName="transform" type="rotate" from="0 400 300" to="360 400 300" dur="25s" repeatCount="indefinite" />
+          </path>
+          <path d="M600 200 L200 400" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+            <animateTransform attributeName="transform" type="rotate" from="0 400 300" to="-360 400 300" dur="25s" repeatCount="indefinite" />
+          </path>
+          
+          <polygon points="400,100 450,200 350,200" fill="var(--accent-color)" opacity="0.7">
+            <animateTransform attributeName="transform" type="rotate" from="0 400 300" to="360 400 300" dur="30s" repeatCount="indefinite" />
+          </polygon>
+          <rect x="350" y="250" width="100" height="100" fill="var(--accent-color)" opacity="0.5">
+            <animateTransform attributeName="transform" type="rotate" from="0 400 300" to="-360 400 300" dur="30s" repeatCount="indefinite" />
+          </rect>
+          
+          <path d="M150 450 Q400 100 650 450" stroke="var(--accent-color)" stroke-width="3" fill="none">
+            <animate attributeName="stroke-dashoffset" from="1000" to="0" dur="50s" repeatCount="indefinite" />
+          </path>
+        </svg>
+      </div>
+      
+      <div class="container">
+        <h1>Say Goodbye to AI Frustrations, Hello to Seamless Solutions</h1>
+        <p>Experience the power of AI enhanced by human expertise â€“ comprehensive, reliable, and tailored just for you.</p>
+        <div class="cta-buttons">
+          <a href="#why-choose-us" class="btn">Discover How We're Different</a>
+          <a href="#contact" class="btn-secondary">Book Your Free Consultation</a>
+        </div>
+      </div>
+    </section>
+    
+    
+    <div class="diagonal-divider"></div>
+    
+    
+    <section id="ai-dilemma" class="animate-section">
+      <div class="container">
+        <h2>The AI Dilemma: Why Current Solutions Fall Short</h2>
+        <div class="accordion">
+          
+          <div class="accordion-item">
+            <button class="accordion-button" aria-expanded="false" aria-controls="ai1" id="ai1-title">
+              Have you ever felt the frustration of:
+              <span class="icon">+</span>
+            </button>
+            <div class="accordion-content" id="ai1" role="region" aria-labelledby="ai1-title">
+              <ul>
+                <li>Spending hours tweaking prompts, only to get inconsistent results?</li>
+                <li>Receiving outputs that are close, but not quite right, wasting your valuable time?</li>
+                <li>Hitting unexpected limitations mid-project, forcing you to start over?</li>
+                <li>Dealing with privacy concerns when sharing sensitive business information?</li>
+                <li>Relying on a single individual using inadequate AI tools?</li>
+              </ul>
+              <p>You're not alone. These are common pain points with traditional AI agents. At MotivaPulse AI, we understand your struggles, and we've built a solution that addresses them head-on.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <div class="diagonal-divider"></div>
+    
+    
+    <section id="our-approach" class="animate-section">
+      <div class="container">
+        <h2>Our Revolutionary Approach</h2>
+        <div class="accordion">
+          
+          <div class="accordion-item">
+            <button class="accordion-button" aria-expanded="false" aria-controls="approach1" id="approach1-title">
+              At MotivaPulse AI, we're not just another AI company. We're your partners in navigating the complex world of artificial intelligence.
+              <span class="icon">+</span>
+            </button>
+            <div class="accordion-content" id="approach1" role="region" aria-labelledby="approach1-title">
+              <h3>The Problem:</h3>
+              <ul>
+                <li><strong>Uncertainty:</strong> Will the AI understand your unique needs?</li>
+                <li><strong>Inconsistency:</strong> One day it works, the next it doesn't.</li>
+                <li><strong>Limited Scope:</strong> Complex tasks often require multiple tools and endless back-and-forth.</li>
+                <li><strong>Lack of Nuance:</strong> AI missing the subtle context that humans grasp instantly.</li>
+                <li><strong>Limited Expertise:</strong> Relying on inadequate tools or inexperienced operators.</li>
+              </ul>
+              <h3>Our Solution:</h3>
+              <ul>
+                <li><strong>AI Power:</strong> Cutting-edge tools that process data at lightning speed.</li>
+                <li><strong>Human Expertise:</strong> Specialists who understand your industry's nuances.</li>
+                <li><strong>Seamless Integration:</strong> No more juggling between AI and human support.</li>
+                <li><strong>Efficient Collaboration:</strong> Our team works together to deliver comprehensive solutions.</li>
+                <li><strong>Strict Confidentiality:</strong> Your sensitive information is always protected.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <div class="diagonal-divider"></div>
+    
+    
+    <section id="services" class="animate-section">
+      <div class="container">
+        <h2>Our Services</h2>
+        <div class="service-grid">
+          
+          <div class="service-card glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="service1-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="service1-title">Marketing and Branding</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>Marketing and Branding</h3>
+            <p>Strategic marketing campaigns, content creation, SEO optimization, and brand development tailored to your business.</p>
+            
+          </div>
+          
+          
+          
+          <div class="service-card glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="service2-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="service2-title">Technical and IT Support</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>Technical and IT Support</h3>
+            <p>App and website development, data management, cybersecurity, and IT troubleshooting to keep your operations running smoothly.</p>
+            
+          </div>
+          
+          
+          <div class="service-card glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="service3-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="service3-title">Business Administration and Consulting</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>Business Administration and Consulting</h3>
+            <p>Process optimization, financial planning, and strategic business consulting to drive your business forward.</p>
+            
+          </div>
+          
+          
+          <div class="service-card glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="service4-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="service4-title">Virtual Assistance and Administrative Support</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>Virtual Assistance and Administrative Support</h3>
+            <p>Executive assistance, document management, research support, and administrative tasks to enhance your productivity.</p>
+            
+          </div>
+          
+          
+          <div class="service-card glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="service5-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="service5-title">Data Analysis and Insights</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>Data Analysis and Insights</h3>
+            <p>Market research, business intelligence reporting, and data management to inform your strategic decisions.</p>
+            
+          </div>
+          
+          
+          <div class="service-card glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="service6-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="service6-title">Customer Experience Enhancement</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>Customer Experience Enhancement</h3>
+            <p>Client support services, UX design, feedback analysis, and customer interaction management to elevate your customer experience.</p>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <div class="diagonal-divider"></div>
+    
+    
+    <section id="why-choose-us" class="animate-section">
+      <div class="container">
+        <h2>Why Choose MotivaPulse AI?</h2>
+        <ul class="benefits-list">
+          
+          <li class="glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="benefit1-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="benefit1-title">End-to-End Excellence</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>End-to-End Excellence</h3>
+            <p>No more cobbling together partial solutions. We provide comprehensive, seamless service from start to finish.</p>
+            
+          </li>
+          
+          
+          
+          <li class="glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="benefit2-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="benefit2-title">Human-AI Synergy</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>Human-AI Synergy</h3>
+            <p>The perfect blend of technological power and human expertise, eliminating the frustrations of AI-only systems.</p>
+            
+          </li>
+          
+          
+          <li class="glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="benefit3-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="benefit3-title">Consistency You Can Count On</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>Consistency You Can Count On</h3>
+            <p>Say goodbye to the "It worked yesterday, why not today?" problem. Our solutions are reliable, day in and day out.</p>
+            
+          </li>
+          
+          
+          <li class="glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="benefit4-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="benefit4-title">Industry-Specific Insight</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>Industry-Specific Insight</h3>
+            <p>We don't just process data; we understand your unique business context, providing tailored solutions.</p>
+            
+          </li>
+          
+          
+          <li class="glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="benefit5-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="benefit5-title">Scalability Without Stress</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>Scalability Without Stress</h3>
+            <p>As your business grows, our solutions adapt effortlessly, ensuring smooth scaling without growing pains.</p>
+            
+          </li>
+          
+          
+          <li class="glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="benefit6-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="benefit6-title">Ironclad Confidentiality</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>Ironclad Confidentiality</h3>
+            <p>With our rigorous security measures and NDAs, your sensitive data is always protected.</p>
+            
+          </li>
+          
+          
+          <li class="glass-card" tabindex="0">
+            <div class="icon interactive-icon" aria-labelledby="benefit7-title" role="img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                <title id="benefit7-title">Enhanced Efficiency</title>
+                <circle cx="32" cy="32" r="30" stroke="var(--accent-color)" stroke-width="4" fill="none"/>
+                <path d="M20 20 L44 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+                <path d="M44 20 L20 44" stroke="var(--accent-color)" stroke-width="4" stroke-linecap="round">
+                  <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="-360 32 32" dur="5s" repeatCount="indefinite" />
+                </path>
+              </svg>
+            </div>
+            <h3>Enhanced Efficiency</h3>
+            <p>Our AI-human synergy allows us to deliver exceptional results promptly, adding value to your investment.</p>
+            
+          </li>
+        </ul>
+      </div>
+    </section>
+    
+    
+    <div class="diagonal-divider"></div>
+    
+    
+    <section id="about-us" class="animate-section">
+      <div class="container">
+        <h2>About Us</h2>
+        <p>MotivaPulse AI is an innovative service provider dedicated to delivering comprehensive solutions by seamlessly integrating top-tier artificial intelligence tools with the expertise of a highly skilled team of professionals. Our mission is to make advanced technological capabilities accessible and user-friendly, ensuring you benefit from AI without the steep learning curve or mistrust associated with fully automated solutions.</p>
+        <p>We believe in the power of combining cutting-edge AI with human ingenuity. Our team of experts comes from diverse backgrounds, bringing a wealth of experience in various industries. This unique blend allows us to understand the nuances of your business and deliver tailored solutions that drive real results.</p>
+      </div>
+    </section>
+    
+    
+    <div class="diagonal-divider"></div>
+    
+    
+    <section id="faq" class="animate-section">
+      <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="accordion">
+          
+          <div class="accordion-item">
+            <button class="accordion-button" aria-expanded="false" aria-controls="faq1" id="faq1-title">
+              How does MotivaPulse AI integrate human expertise with AI technology?
+              <span class="icon">+</span>
+            </button>
+            <div class="accordion-content" id="faq1" role="region" aria-labelledby="faq1-title">
+              <p>We blend the insights of our seasoned professional team with advanced AI tools to create solutions that are both innovative and efficient. This synergy enhances human decision-making rather than replacing it.</p>
+            </div>
+          </div>
+          
+          
+          <div class="accordion-item">
+            <button class="accordion-button" aria-expanded="false" aria-controls="faq2" id="faq2-title">
+              What industries do you specialize in?
+              <span class="icon">+</span>
+            </button>
+            <div class="accordion-content" id="faq2" role="region" aria-labelledby="faq2-title">
+              <p>Our team includes experts across various industries, including finance, healthcare, manufacturing, retail, and more. This diverse expertise allows us to tailor our solutions to your specific industry needs.</p>
+            </div>
+          </div>
+          
+          
+          <div class="accordion-item">
+            <button class="accordion-button" aria-expanded="false" aria-controls="faq3" id="faq3-title">
+              Can your services scale with my business as it grows?
+              <span class="icon">+</span>
+            </button>
+            <div class="accordion-content" id="faq3" role="region" aria-labelledby="faq3-title">
+              <p>Absolutely. Our solutions are designed to adapt and scale according to your evolving business needs. As your company grows, our flexible approach ensures that our AI-powered solutions grow with you.</p>
+            </div>
+          </div>
+          
+          
+          <div class="accordion-item">
+            <button class="accordion-button" aria-expanded="false" aria-controls="faq4" id="faq4-title">
+              How does your approach provide better value?
+              <span class="icon">+</span>
+            </button>
+            <div class="accordion-content" id="faq4" role="region" aria-labelledby="faq4-title">
+              <p>By efficiently integrating AI into our processes, we streamline workflows and reduce overhead. This allows us to offer top-tier services that provide exceptional value, maximizing your return on investment.</p>
+            </div>
+          </div>
+          
+          
+          <div class="accordion-item">
+            <button class="accordion-button" aria-expanded="false" aria-controls="faq5" id="faq5-title">
+              I've tried other AI solutions and been disappointed. How is MotivaPulse AI different?
+              <span class="icon">+</span>
+            </button>
+            <div class="accordion-content" id="faq5" role="region" aria-labelledby="faq5-title">
+              <p>We feel your pain. Unlike generic AI tools or single operators, we offer a personalized approach backed by a full team of experts. We work closely with you to ensure the AI meets your specific needs consistently and effectively. Our human-AI hybrid approach provides the reliability and context-awareness that other solutions often lack.</p>
+            </div>
+          </div>
+          
+          
+          <div class="accordion-item">
+            <button class="accordion-button" aria-expanded="false" aria-controls="faq6" id="faq6-title">
+              How do you ensure the confidentiality of our sensitive information?
+              <span class="icon">+</span>
+            </button>
+            <div class="accordion-content" id="faq6" role="region" aria-labelledby="faq6-title">
+              <p>We take confidentiality seriously. All engagements are protected by Non-Disclosure Agreements (NDAs), and we implement rigorous security protocols to safeguard your data. Our team is trained in best practices for data protection, and we use state-of-the-art encryption methods to keep your information secure.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <div class="diagonal-divider"></div>
+    
+    
+    <section id="contact" class="animate-section">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <form id="contact-form" aria-labelledby="contact-form-title">
+          <h3 id="contact-form-title" class="visually-hidden">Contact Form</h3>
+          
+          <label for="name">Your Name*</label>
+          <input type="text" id="name" name="name" required aria-required="true" aria-describedby="name-error">
+          <div class="error-message" id="name-error"></div>
+          
+          <label for="email">Your Email*</label>
+          <input type="email" id="email" name="email" required aria-required="true" aria-describedby="email-error">
+          <div class="error-message" id="email-error"></div>
+          
+          <label for="subject">Subject*</label>
+          <input type="text" id="subject" name="subject" required aria-required="true" aria-describedby="subject-error">
+          <div class="error-message" id="subject-error"></div>
+          
+          <label for="message">Your Message*</label>
+          <textarea id="message" name="message" rows="5" required aria-required="true" aria-describedby="message-error"></textarea>
+          <div class="error-message" id="message-error"></div>
+          
+          <button type="submit" class="submit-btn">Begin Your Frustration-Free AI Journey</button>
+        </form>
+      </div>
+    </section>
+    
+    
+    <button id="back-to-top" aria-label="Back to top">â†‘</button>
+    
+    
+    
+    
+    <!-- Services Modals -->
+    <div class="modal" id="marketingandbranding-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="marketingandbranding-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="marketingandbranding-modal-title">Marketing and Branding</h3>
+        <p>Explore our comprehensive marketing and branding services designed to elevate your business presence. From strategic campaigns to SEO optimization, we tailor our approach to meet your unique needs.</p>
+      </div>
+    </div>
+    
+    <div class="modal" id="technicalanditsupport-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="technicalanditsupport-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="technicalanditsupport-modal-title">Technical and IT Support</h3>
+        <p>Our technical and IT support services ensure your operations run smoothly. We offer app and website development, data management, cybersecurity, and troubleshooting to keep your business ahead.</p>
+      </div>
+    </div>
+    
+    <div class="modal" id="businessadministrationandconsulting-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="businessadministrationandconsulting-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="businessadministrationandconsulting-modal-title">Business Administration and Consulting</h3>
+        <p>Optimize your business processes with our administration and consulting services. We provide financial planning, strategic consulting, and process optimization to drive your business forward.</p>
+      </div>
+    </div>
+    
+    <div class="modal" id="virtualassistanceandadministrativesupport-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="virtualassistanceandadministrativesupport-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="virtualassistanceandadministrativesupport-modal-title">Virtual Assistance and Administrative Support</h3>
+        <p>Enhance your productivity with our virtual assistance services. We offer executive assistance, document management, research support, and administrative tasks to streamline your administrative tasks.</p>
+      </div>
+    </div>
+    
+    <div class="modal" id="dataanalysisandinsights-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="dataanalysisandinsights-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="dataanalysisandinsights-modal-title">Data Analysis and Insights</h3>
+        <p>Leverage our data analysis services to make informed strategic decisions. We provide market research, business intelligence reporting, and comprehensive data management solutions.</p>
+      </div>
+    </div>
+    
+    <div class="modal" id="customerexperienceenhancement-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="customerexperienceenhancement-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="customerexperienceenhancement-modal-title">Customer Experience Enhancement</h3>
+        <p>Elevate your customer experience with our specialized services. We offer client support, UX design, feedback analysis, and customer interaction management to ensure satisfaction.</p>
+      </div>
+    </div>
+    
+    
+    <!-- Benefits Modals -->
+    <div class="modal" id="endtoendexcellence-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="endtoendexcellence-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="endtoendexcellence-modal-title">End-to-End Excellence</h3>
+        <p>No more cobbling together partial solutions. We provide comprehensive, seamless service from start to finish, ensuring every aspect of your project is handled with precision and expertise.</p>
+      </div>
+    </div>
+    
+    <div class="modal" id="human-ai-synergy-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="human-ai-synergy-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="human-ai-synergy-modal-title">Human-AI Synergy</h3>
+        <p>The perfect blend of technological power and human expertise, eliminating the frustrations of AI-only systems. Our approach ensures that AI enhances human decision-making for optimal results.</p>
+      </div>
+    </div>
+    
+    <div class="modal" id="consistencyyoucancounton-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="consistencyyoucancounton-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="consistencyyoucancounton-modal-title">Consistency You Can Count On</h3>
+        <p>Say goodbye to the "It worked yesterday, why not today?" problem. Our solutions are reliable, providing consistent performance and outcomes every time you engage with our services.</p>
+      </div>
+    </div>
+    
+    <div class="modal" id="industry-specific-insight-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="industry-specific-insight-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="industry-specific-insight-modal-title">Industry-Specific Insight</h3>
+        <p>We don't just process data; we understand your unique business context, providing tailored solutions that address the specific challenges and opportunities within your industry.</p>
+      </div>
+    </div>
+    
+    <div class="modal" id="scalabilitywithoutstress-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="scalabilitywithoutstress-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="scalabilitywithoutstress-modal-title">Scalability Without Stress</h3>
+        <p>As your business grows, our solutions adapt effortlessly, ensuring smooth scaling without growing pains. We provide flexible services that evolve with your expanding needs.</p>
+      </div>
+    </div>
+    
+    <div class="modal" id="ironcladconfidentiality-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="ironcladconfidentiality-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="ironcladconfidentiality-modal-title">Ironclad Confidentiality</h3>
+        <p>With our rigorous security measures and NDAs, your sensitive data is always protected. We prioritize your privacy and ensure that all information remains confidential.</p>
+      </div>
+    </div>
+    
+    <div class="modal" id="enhancedefficiency-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="enhancedefficiency-modal-title">
+      <div class="modal-content">
+        <button class="modal-close" aria-label="Close modal">&times;</button>
+        <h3 id="enhancedefficiency-modal-title">Enhanced Efficiency</h3>
+        <p>Our AI-human synergy allows us to deliver exceptional results promptly, adding value to your investment. We streamline processes to maximize productivity and minimize delays.</p>
+      </div>
+    </div>
+    
+  </main>
+  
+  
+  <footer>
+    <div class="container">
+      
+      <div class="ssl-trust-logo">
+        <img src="https://www.positivessl.com/images/seals/positivessl_trust_seal_md_167x42.png" alt="SSL Trust Seal" loading="lazy">
+      </div>
+      <p>&copy; 2024 MotivaPulse AI. All rights reserved.</p>
+      <ul class="footer-links">
+        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+        <li><a href="terms-of-service.html">Terms of Service</a></li>
+        <li><a href="cookie-policy.html">Cookie Policy</a></li>
+      </ul>
+      <div class="social-links">
+        <a href="https://www.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.twitter.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+  
+  
+  <script>
+    // Initialize Vanilla Tilt for interactive cards
+    VanillaTilt.init(document.querySelectorAll(".glass-card, .service-card, .benefits-list li"), {
+      max: 25,
+      speed: 400,
+      glare: true,
+      "max-glare": 0.3,
+      scale: 1.05
+    });
+    
+    // Initialize Lottie Animations if any (Placeholder)
+    // Example:
+    // lottie.loadAnimation({
+    //   container: document.getElementById('lottie-container'),
+    //   renderer: 'svg',
+    //   loop: true,
+    //   autoplay: true,
+    //   path: 'path/to/animation.json'
+    // });
+  </script>
+</body>
+</html>
