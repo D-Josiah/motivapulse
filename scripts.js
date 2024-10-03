@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function setTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
         themeToggleBtn.innerHTML = theme === 'dark' 
-            ? '<i class="fas fa-sun"></i>' // Use the Font Awesome sun icon for light mode
-            : '<i class="fas fa-moon"></i>'; // Use the Font Awesome moon icon for dark mode
+            ? '<i class="fas fa-sun fa-2x"></i>' // Use the Font Awesome sun icon for light mode
+            : '<i class="fas fa-moon fa-2x"></i>'; // Use the Font Awesome moon icon for dark mode
     }
     
     
