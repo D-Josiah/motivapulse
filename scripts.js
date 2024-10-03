@@ -21,8 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function setTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
-        themeToggleBtn.textContent = theme === 'dark' ? '☀' : '🌙';
+        themeToggleBtn.innerHTML = theme === 'dark' 
+            ? '<i class="fas fa-sun"></i>' // Use the Font Awesome sun icon for light mode
+            : '<i class="fas fa-moon"></i>'; // Use the Font Awesome moon icon for dark mode
     }
+    
     
     /* =====================================================
        2. Responsive Navigation Menu
@@ -129,15 +132,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     /* =====================================================
-       6. Service and Benefit Cards Interactivity
-       ===================================================== */
+  /* =====================================================
+   6. Service and Benefit Cards Interactivity
+   ===================================================== */
     const serviceCards = document.querySelectorAll('.service-card');
     const benefitCards = document.querySelectorAll('.benefits-list li');
 
     // Function to open modal based on card
     function openModalByCard(card) {
         const titleText = card.querySelector('h3').textContent.trim();
-        const modalId = ${titleText.toLowerCase().replace(/\s+/g, '')}-modal;
+        const modalId = `${titleText.toLowerCase().replace(/\s+/g, '')}-modal`; // Use template literals for modalId
         const modal = document.getElementById(modalId);
         if (modal) openModal(modal, card);
     }
@@ -166,8 +170,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* =====================================================
-       7. Modal Functionality with Enhanced Accessibility
-       ===================================================== */
+    7. Modal Functionality with Enhanced Accessibility
+    ===================================================== */
     const modals = document.querySelectorAll('.modal');
     const closeModalButtons = document.querySelectorAll('.modal-close');
 
@@ -192,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.setAttribute('aria-hidden', 'true');
         const triggerId = modal.dataset.triggerId;
         if (triggerId) {
-            const triggerElement = document.querySelector([data-trigger-id="${triggerId}"]) || document.getElementById(triggerId);
+            const triggerElement = document.querySelector(`[data-trigger-id="${triggerId}"]`) || document.getElementById(triggerId); // Corrected selector syntax
             if (triggerElement) triggerElement.focus();
             delete modal.dataset.triggerId;
         }
@@ -217,81 +221,82 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Close All Modals on Escape Key Press
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            modals.forEach(modal => {
-                if (modal.classList.contains('active')) {
-                    closeModal(modal);
-                }
-            });
-        }
-    });
-
-    /**
-     * Traps focus within the currently open modal
-     * @param {FocusEvent} e - The focus event
-     */
-    function trapFocus(e) {
+  // Close All Modals on Escape Key Press
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
         modals.forEach(modal => {
             if (modal.classList.contains('active')) {
-                if (!modal.contains(e.target)) {
-                    e.stopPropagation();
-                    modal.querySelector('.modal-content').focus();
-                }
+                closeModal(modal);
             }
         });
     }
+});
 
-    /* =====================================================
-       8. Back-to-Top Button Functionality
-       ===================================================== */
-    const backToTopButton = document.getElementById('back-to-top');
-
-    if (backToTopButton) {
-        // Show or Hide Back-to-Top Button based on scroll position
-        window.addEventListener('scroll', debounce(() => {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
+/**
+ * Traps focus within the currently open modal
+ * @param {FocusEvent} e - The focus event
+ */
+function trapFocus(e) {
+    modals.forEach(modal => {
+        if (modal.classList.contains('active')) {
+            if (!modal.contains(e.target)) {
+                e.stopPropagation();
+                modal.querySelector('.modal-content').focus();
             }
-        }, 100));
+        }
+    });
+}
 
-        // Scroll smoothly to the top when Back-to-Top Button is clicked
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
+/* =====================================================
+   8. Back-to-Top Button Functionality
+   ===================================================== */
+const backToTopButton = document.getElementById('back-to-top');
 
-    /* =====================================================
-       9. Smooth Scrolling for Anchor Links
-       ===================================================== */
-    const internalLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
-    internalLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const targetId = link.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                e.preventDefault();
-                const header = document.querySelector('header');
-                const headerHeight = header ? header.offsetHeight : 0;
-                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = elementPosition - headerHeight;
+if (backToTopButton) {
+    // Show or Hide Back-to-Top Button based on scroll position
+    window.addEventListener('scroll', debounce(() => {
+        if (window.scrollY > 300) {
+            backToTopButton.classList.add('visible');
+        } else {
+            backToTopButton.classList.remove('visible');
+        }
+    }, 100));
 
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-
-                // Update URL hash without default jump
-                history.pushState(null, null, #${targetId});
-            }
+    // Scroll smoothly to the top when Back-to-Top Button is clicked
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
     });
+}
+
+/* =====================================================
+   9. Smooth Scrolling for Anchor Links
+   ===================================================== */
+const internalLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
+internalLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        const targetId = link.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            e.preventDefault();
+            const header = document.querySelector('header');
+            const headerHeight = header ? header.offsetHeight : 0;
+            const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerHeight;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+
+            // Update URL hash without default jump
+            history.pushState(null, null, `#${targetId}`); // Corrected syntax
+        }
+    });
+});
+
 
     /* =====================================================
        10. Form Validation and User Feedback
