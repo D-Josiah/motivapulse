@@ -1,4 +1,3 @@
-
 /* =============================== 1. CSS Variables and Theme Definitions =============================== */
 :root {
     /* ==================== Font Definitions ==================== */
@@ -12,29 +11,33 @@
     --color-text-light: #ffffff;
     --color-accent: #FF6F3C;
     --color-accent-hover: #e65c2d;
-    --color-border: rgba(255, 255, 255, 0.3);
+    --color-border: rgba(0, 0, 0, 0.1);
     --color-border-dark: rgba(0, 0, 0, 0.3);
     --color-shadow: rgba(31, 38, 135, 0.37);
     --color-shadow-dark: rgba(0, 0, 0, 0.5);
     --color-focus: var(--color-accent);
+    --color-background-dark: #1e1e1e;
+    --color-background-light-dark: #2c2c2c;
+    --color-text-dark: #f5f5f5;
+    --color-border-dark-theme: rgba(255, 255, 255, 0.3);
+    --color-shadow-dark-theme: rgba(0, 0, 0, 0.7);
+    --color-shadow-dark-dark: rgba(0, 0, 0, 0.8);
+    --color-scrollbar-track: #1e1e1e;
+    --color-scrollbar-thumb: #FF6F3C;
+    --color-scrollbar-thumb-hover: #e65c2d;
+    --color-secondary-accent: #6F42C1;
 
-    /* Dark Theme Colors */
-    [data-theme="dark"] {
-        --color-background: #1e1e1e;
-        --color-background-light: #2c2c2c;
-        --color-text: #f5f5f5;
-        --color-border: var(--color-border-dark);
-        --color-shadow: rgba(0, 0, 0, 0.7);
-        --color-shadow-dark: rgba(0, 0, 0, 0.8);
-    }
+    /* ==================== Tooltip Colors ==================== */
+    --color-tooltip-background: rgba(0, 0, 0, 0.75);
+    --color-tooltip-text: #ffffff;
 
     /* ==================== Spacing ==================== */
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 16px;
-    --spacing-lg: 24px;
-    --spacing-xl: 32px;
-    --spacing-xxl: 48px;
+    --spacing-xs: 0.25rem; /* 4px */
+    --spacing-sm: 0.5rem;  /* 8px */
+    --spacing-md: 1rem;    /* 16px */
+    --spacing-lg: 1.5rem;  /* 24px */
+    --spacing-xl: 2rem;     /* 32px */
+    --spacing-xxl: 3rem;    /* 48px */
 
     /* ==================== Typography ==================== */
     --font-size-xs: 0.75rem;
@@ -46,12 +49,12 @@
     --line-height: 1.6;
 
     /* ==================== Borders and Radius ==================== */
-    --border-radius: 12px;
-    --border-width: 2px;
+    --border-radius: 0.5rem; /* 8px */
+    --border-width: 0.0625rem; /* 1px */
 
     /* ==================== Shadows ==================== */
     --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-dark: 0 8px 32px 0 var(--color-shadow-dark);
+    --shadow-dark: 0 8px 16px rgba(0, 0, 0, 0.2);
 
     /* ==================== Transitions ==================== */
     --transition-speed: 0.3s;
@@ -59,12 +62,11 @@
 
     /* ==================== Z-Index Layers ==================== */
     --z-index-header: 1000;
-    --z-index-modal: 10000;
-    --z-index-tooltip: 1000;
+    --z-index-modal: 1050;
+    --z-index-tooltip: 1100;
 
     /* ==================== Animations ==================== */
-    --animation-duration: 0.5s;
-    --animation-easing: ease-in-out;
+    /* Removed unused variables */
 }
 
 /* =============================== 2. CSS Reset and Base Styles =============================== */
@@ -86,20 +88,83 @@ a {
     color: inherit;
 }
 
-/* Set base font properties */
+/* Set base font properties with fallbacks */
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: var(--font-family);
     background-color: var(--color-background);
     color: var(--color-text);
     line-height: var(--line-height);
     font-size: var(--font-size-md);
-    transition: background-color var(--transition-speed) var(--animation-easing), color var(--transition-speed) var(--animation-easing);
+    transition: background-color var(--transition-speed) var(--transition-easing), color var(--transition-speed) var(--transition-easing);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Anchor Tags */
 a:hover, a:focus {
     color: var(--color-accent-hover);
-    transition: color var(--transition-speed) var(--animation-easing);
+    transition: color var(--transition-speed) var(--transition-easing);
+    outline: none;
+}
+
+/* Logo and Navigation Toggle */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 3.75rem; /* Default height */
+    width: auto;
+    transition: transform var(--transition-speed) var(--transition-easing);
+}
+
+.logo img:hover, .logo img:focus {
+    transform: rotate(10deg) scale(1.1);
+}
+
+/* Responsive Adjustments for Logo */
+@media (min-width: 1400px) {
+    .logo img {
+        height: 4.375rem; /* 70px */
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+    .logo img {
+        height: 4.0625rem; /* 65px */
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .logo img {
+        height: 3.75rem; /* 60px */
+    }
+}
+
+/* Navigation Toggle Button (Hamburger Menu) */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 1.875rem;
+    height: 0.25rem;
+    background-color: var(--color-text);
+    transition: background-color var(--transition-speed) var(--transition-easing);
+}
+
+[data-theme="dark"] .nav-toggle span {
+    background-color: var(--color-text-light);
 }
 
 /* =============================== 3. Typography =============================== */
@@ -128,7 +193,7 @@ h6 { font-size: var(--font-size-xs); }
 /* Container */
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: var(--spacing-md);
 }
@@ -142,11 +207,13 @@ header {
     background-color: var(--color-background-light);
     box-shadow: var(--shadow-light);
     z-index: var(--z-index-header);
-    transition: background-color var(--transition-speed) var(--animation-easing), box-shadow var(--transition-speed) var(--animation-easing);
+    transition: background-color var(--transition-speed) var(--transition-easing), box-shadow var(--transition-speed) var(--transition-easing);
 }
 
+/* Dark Theme Header */
 [data-theme="dark"] header {
-    background-color: var(--color-background-dark);
+    background-color: var(--color-background-light-dark);
+    box-shadow: var(--shadow-dark-dark);
 }
 
 /* Header Container */
@@ -155,17 +222,6 @@ header .container {
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-sm) var(--spacing-lg);
-}
-
-/* Logo */
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    height: 50px;
-    width: auto;
 }
 
 /* Navigation */
@@ -177,56 +233,38 @@ nav {
 .nav-menu {
     display: flex;
     gap: var(--spacing-md);
+    align-items: center;
 }
 
+/* Nav Menu Links */
 .nav-menu a {
     position: relative;
     padding: var(--spacing-xs) var(--spacing-sm);
     font-size: var(--font-size-md);
     color: var(--color-text);
-    transition: color var(--transition-speed) var(--animation-easing);
+    transition: color var(--transition-speed) var(--transition-easing);
 }
 
+/* Underline Effect */
 .nav-menu a::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
+    height: 0.125rem;
     background-color: var(--color-accent);
     left: 0;
-    bottom: -4px;
-    transition: width var(--transition-speed) var(--animation-easing);
+    bottom: -0.25rem;
+    transition: width var(--transition-speed) var(--transition-easing);
 }
 
 .nav-menu a:hover::after, .nav-menu a:focus::after, .nav-menu a.active::after {
     width: 100%;
 }
 
-/* Navigation Toggle Button (Hamburger Menu) */
-.nav-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.nav-toggle span {
-    width: 25px;
-    height: 3px;
-    background-color: var(--color-text);
-    transition: background-color var(--transition-speed) var(--animation-easing);
-}
-
-[data-theme="dark"] .nav-toggle span {
-    background-color: var(--color-text-light);
-}
-
 /* =============================== 5. Hero Section =============================== */
 #hero {
     position: relative;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -234,6 +272,15 @@ nav {
     color: var(--color-text-light);
     overflow: hidden;
     padding-top: calc(60px + var(--spacing-md)); /* Adjust for fixed header height */
+    background: linear-gradient(45deg, #FF6F3C, #6F42C1, #0077B6);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 /* Particles.js Container */
@@ -244,32 +291,26 @@ nav {
     width: 100%;
     height: 100%;
     z-index: 1;
-}
-
-/* Animated Background */
-.animated-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    overflow: hidden;
+    background-color: #000000;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
 }
 
 /* Hero Content Container */
 #hero .container {
     position: relative;
     z-index: 3;
+    perspective: 1000px;
 }
 
 /* Hero Headline */
 #hero h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: var(--spacing-sm);
     opacity: 0;
-    transform: translateY(-20px);
-    animation: fadeInUp 1s forwards;
+    transform: translateY(-20px) rotateY(-10deg);
+    animation: fadeInUp 1s forwards, rotateIn 2s forwards;
     animation-delay: 0.5s;
     color: var(--color-text);
 }
@@ -280,9 +321,9 @@ nav {
 
 /* Hero Subheadline */
 #hero p {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
     margin-bottom: var(--spacing-lg);
-    max-width: 600px;
+    max-width: 50rem;
     margin-left: auto;
     margin-right: auto;
     opacity: 0;
@@ -304,20 +345,37 @@ nav {
 }
 
 .cta-buttons .btn, .cta-buttons .btn-secondary {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 1s forwards;
-    animation-delay: 1.5s;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-md);
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed) var(--transition-easing), transform var(--transition-speed) var(--transition-easing);
+    cursor: pointer;
+    text-align: center;
 }
 
-/* Diagonal Divider */
-.diagonal-divider {
-    width: 100%;
-    height: 100px;
-    background: linear-gradient(135deg, var(--color-accent) 50%, transparent 50%);
-    transform: skewY(-3deg);
-    margin-top: -50px;
-    z-index: 2;
+.cta-buttons .btn {
+    background-color: var(--color-accent);
+    color: var(--color-text-light);
+    border: none;
+}
+
+.cta-buttons .btn:hover, .cta-buttons .btn:focus {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-4px);
+    outline: none;
+}
+
+.cta-buttons .btn-secondary {
+    background-color: transparent;
+    color: var(--color-accent);
+    border: 2px solid var(--color-accent);
+}
+
+.cta-buttons .btn-secondary:hover, .cta-buttons .btn-secondary:focus {
+    background-color: var(--color-accent);
+    color: var(--color-text-light);
+    transform: translateY(-4px);
+    outline: none;
 }
 
 /* =============================== 6. Services Section =============================== */
@@ -326,6 +384,11 @@ nav {
     position: relative;
     overflow: hidden;
     background-color: var(--color-background);
+    transition: background-color var(--transition-speed) var(--transition-easing);
+}
+
+[data-theme="dark"] #services {
+    background-color: var(--color-background-dark);
 }
 
 #services .container {
@@ -337,104 +400,219 @@ nav {
     margin-bottom: var(--spacing-md);
     font-size: var(--font-size-xl);
     color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.125rem; /* 2px */
+    position: relative;
+    transition: color var(--transition-speed) var(--transition-easing);
+}
+
+[data-theme="dark"] #services h2 {
+    color: var(--color-text-light);
+}
+
+#services h2::after {
+    content: '';
+    position: absolute;
+    width: 3.75rem; /* 60px */
+    height: 0.25rem; /* 4px */
+    background-color: var(--color-accent);
+    bottom: -0.625rem; /* -10px */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* Service Grid */
 .service-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr)); /* 300px */
     gap: var(--spacing-lg);
     padding: var(--spacing-md);
+    perspective: 1000px; /* Enable 3D perspective */
 }
 
-/* Service and Glass Cards */
-.service-card, .glass-card {
-    position: relative;
+/* Service Card */
+.service-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
     border: var(--border-width) solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Vendor extension */
+    backdrop-filter: blur(1.25rem); /* 20px */
     box-shadow: var(--shadow-light);
     color: var(--color-text);
     padding: var(--spacing-lg);
-    transition: transform var(--transition-speed) var(--animation-easing), box-shadow var(--transition-speed) var(--animation-easing), background var(--transition-speed) var(--animation-easing);
+    transition: transform var(--transition-speed) var(--transition-easing), 
+                box-shadow var(--transition-speed) var(--transition-easing), 
+                background var(--transition-speed) var(--transition-easing);
     cursor: pointer;
     overflow: hidden;
-    will-change: transform, box-shadow, background;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    transform-style: preserve-3d;
+    opacity: 0;
+    animation: fadeInUp 1s forwards;
 }
 
-[data-theme="dark"] .service-card, [data-theme="dark"] .glass-card {
-    background: rgba(0, 0, 0, 0.5);
+[data-theme="dark"] .service-card {
+    background: rgba(0, 0, 0, 0.6);
     border: var(--border-width) solid rgba(0, 0, 0, 0.3);
     color: var(--color-text-light);
 }
 
-.service-card:hover, .service-card:focus-within,
-.glass-card:hover, .glass-card:focus-within {
-    transform: translateY(-10px);
+.service-card:focus {
+    outline: 3px solid var(--color-focus);
+}
+
+.service-card:hover, .service-card:focus-within {
+    transform: translateY(-1.25rem) rotateY(0.3125rem); /* -20px, 5deg */
     box-shadow: var(--shadow-dark);
     background: rgba(255, 255, 255, 0.15);
 }
 
-[data-theme="dark"] .service-card:hover, [data-theme="dark"] .service-card:focus-within,
-[data-theme="dark"] .glass-card:hover, [data-theme="dark"] .glass-card:focus-within {
-    background: rgba(0, 0, 0, 0.6);
+[data-theme="dark"] .service-card:hover, 
+[data-theme="dark"] .service-card:focus-within {
+    background: rgba(0, 0, 0, 0.7);
 }
 
-/* SVG Icons within Cards */
-.service-card .icon, .glass-card .icon {
+.service-card .icon {
     margin-bottom: var(--spacing-sm);
-    transition: transform var(--transition-speed) var(--animation-easing);
+    transition: transform var(--transition-speed) var(--transition-easing);
 }
 
-.service-card .icon svg, .glass-card .icon svg {
-    width: 60px;
-    height: 60px;
-    fill: var(--color-accent);
-    transition: fill var(--transition-speed) var(--animation-speed) var(--animation-easing), transform var(--transition-speed) var(--animation-easing);
+.service-card .icon img {
+    width: 5rem; /* 80px */
+    height: 5rem;
+    transition: transform var(--transition-speed) var(--transition-easing);
 }
 
-.service-card:hover .icon svg, .service-card:focus-within .icon svg,
-.glass-card:hover .icon svg, .glass-card:focus-within .icon svg {
-    fill: var(--color-accent-hover);
-    transform: rotate(10deg) scale(1.1);
+.service-card:hover .icon img, 
+.service-card:focus-within .icon img {
+    transform: rotate(20deg) scale(1.2); /* 20deg, 1.2 scale */
 }
 
-/* Service Card Titles */
-.service-card h3, .glass-card h3 {
+.service-card h3 {
     margin-bottom: var(--spacing-sm);
     font-size: var(--font-size-lg);
-    transition: color var(--transition-speed) var(--animation-easing);
+    transition: color var(--transition-speed) var(--transition-easing);
+    position: relative;
 }
 
-.service-card h3:hover, .service-card h3:focus,
-.glass-card h3:hover, .glass-card h3:focus {
+[data-theme="dark"] .service-card h3 {
+    color: var(--color-text-light);
+}
+
+.service-card h3::after {
+    content: '';
+    position: absolute;
+    width: 1.875rem; /* 30px */
+    height: 0.1875rem; /* 3px */
+    background-color: var(--color-accent);
+    bottom: -0.3125rem; /* -5px */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.service-card h3:hover, .service-card h3:focus {
     color: var(--color-accent-hover);
 }
 
-/* Service Card Descriptions */
-.service-card p, .glass-card p {
+.service-card p {
     font-size: var(--font-size-md);
     color: var(--color-text);
     flex-grow: 1;
     margin-bottom: var(--spacing-lg);
+    transition: color var(--transition-speed) var(--transition-easing);
 }
 
-[data-theme="dark"] .service-card p, [data-theme="dark"] .glass-card p {
+[data-theme="dark"] .service-card p {
     color: var(--color-text-light);
 }
 
-/* =============================== 7. Why Choose Us Section =============================== */
+/* =============================== 7. AI Quotes Section =============================== */
+#ai-quotes {
+    padding: var(--spacing-lg) 0;
+    background-color: var(--color-background-light);
+    position: relative;
+    overflow: hidden;
+    transition: background-color var(--transition-speed) var(--transition-easing);
+}
+
+[data-theme="dark"] #ai-quotes {
+    background-color: var(--color-background-dark);
+}
+
+#ai-quotes .container {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+}
+
+#ai-quotes h2 {
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-xl);
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.125rem; /* 2px */
+    position: relative;
+    transition: color var(--transition-speed) var(--transition-easing);
+}
+
+[data-theme="dark"] #ai-quotes h2 {
+    color: var(--color-text-light);
+}
+
+#ai-quotes h2::after {
+    content: '';
+    position: absolute;
+    width: 3.75rem; /* 60px */
+    height: 0.25rem; /* 4px */
+    background-color: var(--color-accent);
+    bottom: -0.625rem; /* -10px */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.quote-slider {
+    position: relative;
+    max-width: 50rem; /* 800px */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.quote-slider blockquote {
+    font-size: var(--font-size-lg);
+    font-style: italic;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    opacity: 0;
+    animation: fadeInUp 1s forwards;
+}
+
+[data-theme="dark"] .quote-slider blockquote {
+    color: var(--color-text-light);
+}
+
+.quote-slider blockquote::before {
+    content: "“";
+    font-size: 4rem;
+    position: absolute;
+    left: -1.25rem; /* -20px */
+    top: -0.625rem; /* -10px */
+    color: var(--color-accent);
+}
+
+.quote-slider blockquote.active {
+    opacity: 1;
+}
+
+/* =============================== 8. Why Choose Us Section =============================== */
 #why-choose-us {
     padding: var(--spacing-lg) 0;
     background-color: var(--color-background-light);
     position: relative;
     overflow: hidden;
+    transition: background-color var(--transition-speed) var(--transition-easing);
 }
 
 [data-theme="dark"] #why-choose-us {
@@ -450,132 +628,131 @@ nav {
     margin-bottom: var(--spacing-md);
     font-size: var(--font-size-xl);
     color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.125rem; /* 2px */
+    position: relative;
+    transition: color var(--transition-speed) var(--transition-easing);
 }
 
 [data-theme="dark"] #why-choose-us h2 {
     color: var(--color-text-light);
 }
 
+#why-choose-us h2::after {
+    content: '';
+    position: absolute;
+    width: 3.75rem; /* 60px */
+    height: 0.25rem; /* 4px */
+    background-color: var(--color-accent);
+    bottom: -0.625rem; /* -10px */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 /* Benefits List */
 .benefits-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr)); /* 300px */
     gap: var(--spacing-lg);
     padding: var(--spacing-md);
+    perspective: 1000px; /* Enable 3D perspective */
 }
 
-/* Benefit Items */
+/* Benefits List Items */
 .benefits-list li {
-    position: relative;
     background: rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
     border: var(--border-width) solid rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Vendor extension */
+    backdrop-filter: blur(1.25rem); /* 20px */
     box-shadow: var(--shadow-light);
     color: var(--color-text);
     padding: var(--spacing-lg);
-    transition: transform var(--transition-speed) var(--animation-easing), box-shadow var(--transition-speed) var(--animation-easing), background var(--transition-speed) var(--animation-easing);
+    transition: transform var(--transition-speed) var(--transition-easing), 
+                box-shadow var(--transition-speed) var(--transition-easing), 
+                background var(--transition-speed) var(--transition-easing);
     cursor: pointer;
     overflow: hidden;
-    will-change: transform, box-shadow, background;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    transform-style: preserve-3d;
+    opacity: 0;
+    animation: fadeInUp 1s forwards;
 }
 
 [data-theme="dark"] .benefits-list li {
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     border: var(--border-width) solid rgba(0, 0, 0, 0.3);
     color: var(--color-text-light);
 }
 
+.benefits-list li:focus {
+    outline: 3px solid var(--color-focus);
+}
+
 .benefits-list li:hover, .benefits-list li:focus-within {
-    transform: translateY(-10px);
+    transform: translateY(-1.25rem) rotateY(5deg); /* -20px, 5deg */
     box-shadow: var(--shadow-dark);
     background: rgba(255, 255, 255, 0.15);
 }
 
-[data-theme="dark"] .benefits-list li:hover, [data-theme="dark"] .benefits-list li:focus-within {
-    background: rgba(0, 0, 0, 0.6);
+[data-theme="dark"] .benefits-list li:hover, 
+[data-theme="dark"] .benefits-list li:focus-within {
+    background: rgba(0, 0, 0, 0.7);
 }
 
-/* SVG Icons within Benefits */
 .benefits-list li .icon {
     margin-bottom: var(--spacing-sm);
-    transition: transform var(--transition-speed) var(--animation-easing);
+    transition: transform var(--transition-speed) var(--transition-easing);
 }
 
-.benefits-list li .icon svg {
-    width: 60px;
-    height: 60px;
-    fill: var(--color-accent);
-    transition: fill var(--transition-speed) var(--animation-speed) var(--animation-easing), transform var(--transition-speed) var(--animation-easing);
+.benefits-list li .icon img {
+    width: 5rem; /* 80px */
+    height: 5rem;
+    transition: transform var(--transition-speed) var(--transition-easing);
 }
 
-.benefits-list li:hover .icon svg, .benefits-list li:focus-within .icon svg {
-    fill: var(--color-accent-hover);
-    transform: rotate(10deg) scale(1.1);
+.benefits-list li:hover .icon img, 
+.benefits-list li:focus-within .icon img {
+    transform: rotate(20deg) scale(1.2); /* 20deg, 1.2 scale */
 }
 
-/* Benefit Titles */
 .benefits-list li h3 {
     margin-bottom: var(--spacing-sm);
     font-size: var(--font-size-lg);
-    transition: color var(--transition-speed) var(--animation-easing);
+    transition: color var(--transition-speed) var(--transition-easing);
+    position: relative;
+}
+
+[data-theme="dark"] .benefits-list li h3 {
+    color: var(--color-text-light);
+}
+
+.benefits-list li h3::after {
+    content: '';
+    position: absolute;
+    width: 1.875rem; /* 30px */
+    height: 0.1875rem; /* 3px */
+    background-color: var(--color-accent);
+    bottom: -0.3125rem; /* -5px */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .benefits-list li h3:hover, .benefits-list li h3:focus {
     color: var(--color-accent-hover);
 }
 
-/* Benefit Descriptions */
 .benefits-list li p {
     font-size: var(--font-size-md);
     color: var(--color-text);
     flex-grow: 1;
     margin-bottom: var(--spacing-lg);
+    transition: color var(--transition-speed) var(--transition-easing);
 }
 
 [data-theme="dark"] .benefits-list li p {
-    color: var(--color-text-light);
-}
-
-/* =============================== 8. About Us Section =============================== */
-#about-us {
-    padding: var(--spacing-lg) 0;
-    background-color: var(--color-background);
-    position: relative;
-    overflow: hidden;
-}
-
-[data-theme="dark"] #about-us {
-    background-color: var(--color-background-dark);
-}
-
-#about-us .container {
-    position: relative;
-    z-index: 3;
-}
-
-#about-us h2 {
-    margin-bottom: var(--spacing-md);
-    font-size: var(--font-size-xl);
-    color: var(--color-text);
-}
-
-[data-theme="dark"] #about-us h2 {
-    color: var(--color-text-light);
-}
-
-#about-us p {
-    margin-bottom: var(--spacing-md);
-    font-size: var(--font-size-md);
-    color: var(--color-text);
-}
-
-[data-theme="dark"] #about-us p {
     color: var(--color-text-light);
 }
 
@@ -585,6 +762,7 @@ nav {
     background-color: var(--color-background-light);
     position: relative;
     overflow: hidden;
+    transition: background-color var(--transition-speed) var(--transition-easing);
 }
 
 [data-theme="dark"] #faq {
@@ -600,24 +778,38 @@ nav {
     margin-bottom: var(--spacing-md);
     font-size: var(--font-size-xl);
     color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.125rem; /* 2px */
+    position: relative;
+    transition: color var(--transition-speed) var(--transition-easing);
 }
 
 [data-theme="dark"] #faq h2 {
     color: var(--color-text-light);
 }
 
-/* Accordion */
+#faq h2::after {
+    content: '';
+    position: absolute;
+    width: 3.75rem; /* 60px */
+    height: 0.25rem; /* 4px */
+    background-color: var(--color-accent);
+    bottom: -0.625rem; /* -10px */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .accordion {
-    max-width: 800px;
+    max-width: 50rem; /* 800px */
     margin: var(--spacing-lg) auto;
 }
 
 .accordion-item {
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 0.125rem solid #e0e0e0; /* 1px */
 }
 
 [data-theme="dark"] .accordion-item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 0.125rem solid rgba(255, 255, 255, 0.1);
 }
 
 .accordion-button {
@@ -631,8 +823,9 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: background-color var(--transition-speed) var(--animation-easing);
+    transition: background-color var(--transition-speed) var(--transition-easing);
     color: var(--color-text);
+    position: relative;
 }
 
 [data-theme="dark"] .accordion-button {
@@ -645,7 +838,7 @@ nav {
 }
 
 .accordion-button .icon {
-    transition: transform var(--transition-speed) var(--animation-easing);
+    transition: transform var(--transition-speed) var(--transition-easing);
     font-size: 1.5rem;
     line-height: 1;
 }
@@ -657,25 +850,32 @@ nav {
 .accordion-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height var(--transition-speed) var(--animation-easing);
+    transition: max-height var(--transition-speed) var(--transition-easing);
 }
 
 .accordion-content p, .accordion-content ul {
     padding: var(--spacing-sm) var(--spacing-md);
     color: #555555;
     font-size: var(--font-size-md);
+    transition: color var(--transition-speed) var(--transition-easing);
 }
 
-[data-theme="dark"] .accordion-content p, [data-theme="dark"] .accordion-content ul {
+[data-theme="dark"] .accordion-content p, 
+[data-theme="dark"] .accordion-content ul {
     color: #dddddd;
+}
+
+.accordion-content.show {
+    max-height: 1000px; /* Increased max-height to fit all content */
 }
 
 /* =============================== 10. Contact Section =============================== */
 #contact {
     padding: var(--spacing-lg) 0;
-    background-color: var(--color-background);
+    background-color: var(--color-background-light);
     position: relative;
     overflow: hidden;
+    transition: background-color var(--transition-speed) var(--transition-easing);
 }
 
 [data-theme="dark"] #contact {
@@ -691,201 +891,99 @@ nav {
     margin-bottom: var(--spacing-md);
     font-size: var(--font-size-xl);
     color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.125rem; /* 2px */
+    position: relative;
+    transition: color var(--transition-speed) var(--transition-easing);
 }
 
 [data-theme="dark"] #contact h2 {
     color: var(--color-text-light);
 }
 
-form {
-    max-width: 600px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+#contact h2::after {
+    content: '';
+    position: absolute;
+    width: 3.75rem; /* 60px */
+    height: 0.25rem; /* 4px */
+    background-color: var(--color-accent);
+    bottom: -0.625rem; /* -10px */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-form label {
+#contact form {
+    max-width: 50rem; /* 800px */
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+    position: relative;
+}
+
+.form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    font-weight: 600;
     color: var(--color-text);
 }
 
-[data-theme="dark"] form label {
+[data-theme="dark"] .form-group label {
     color: var(--color-text-light);
 }
 
-form input[type="text"], form input[type="email"], form textarea {
+.form-group input, .form-group textarea {
     width: 100%;
     padding: var(--spacing-sm);
     border: var(--border-width) solid var(--color-border);
     border-radius: var(--border-radius);
     font-size: var(--font-size-md);
-    transition: border-color var(--transition-speed) var(--animation-easing);
-    background: var(--color-background-light);
-    color: var(--color-text);
+    transition: border-color var(--transition-speed) var(--transition-easing), box-shadow var(--transition-speed) var(--transition-easing);
 }
 
-[data-theme="dark"] form input[type="text"], 
-[data-theme="dark"] form input[type="email"], 
-[data-theme="dark"] form textarea {
-    background: var(--color-background-dark);
-    color: var(--color-text-light);
-    border: var(--border-width) solid var(--color-border-dark);
-}
-
-form input[type="text"]:focus, form input[type="email"]:focus, form textarea:focus {
+.form-group input:focus, .form-group textarea:focus {
     border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(255, 111, 60, 0.3);
     outline: none;
 }
 
-form input.invalid, form textarea.invalid {
-    border-color: var(--color-accent-hover);
+.form-group input.invalid, .form-group textarea.invalid {
+    border-color: red;
 }
 
 .error-message {
-    color: var(--color-accent-hover);
+    color: red;
     font-size: var(--font-size-xs);
-    margin-top: -var(--spacing-sm);
-    margin-bottom: var(--spacing-sm);
+    margin-top: 0.25rem;
+    opacity: 0;
+    transition: opacity var(--transition-speed) var(--transition-easing);
 }
 
-.message {
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius);
-    margin-bottom: var(--spacing-lg);
-    text-align: center;
-    font-weight: 600;
-    font-size: var(--font-size-md);
+.error-message.visible {
+    opacity: 1;
 }
 
-.message.success {
-    background-color: #d4edda;
-    color: #155724;
-    border: var(--border-width) solid #c3e6cb;
-}
-
-.message.error {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: var(--border-width) solid #f5c6cb;
-}
-
-/* Submit Button */
 .submit-btn {
     background-color: var(--color-accent);
     color: var(--color-text-light);
     border: none;
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-md);
     border-radius: var(--border-radius);
     cursor: pointer;
-    font-size: var(--font-size-md);
-    transition: background-color var(--transition-speed) var(--animation-easing), transform var(--transition-speed) var(--animation-easing), box-shadow var(--transition-speed) var(--animation-easing);
-    box-shadow: var(--shadow-light);
+    transition: background-color var(--transition-speed) var(--transition-easing), transform var(--transition-speed) var(--transition-easing);
 }
 
 .submit-btn:hover, .submit-btn:focus {
     background-color: var(--color-accent-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-dark);
+    transform: translateY(-4px);
     outline: none;
 }
-
-/* =============================== 11. Modal Components =============================== */
-/* Modal Overlay */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right:0;
-    bottom:0;
-    background-color: rgba(0,0,0,0.5);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: var(--z-index-modal);
-    transition: opacity var(--transition-speed) var(--animation-easing);
-}
-
-/* Active Modal */
-.modal.active {
-    display: flex;
-    animation: fadeIn var(--animation-duration) var(--animation-easing) forwards;
-}
-
-/* Modal Content */
-.modal-content {
-    background-color: var(--color-background-light);
-    padding: var(--spacing-lg);
-    border-radius: var(--border-radius);
-    max-width: 600px;
-    width: 90%;
-    position: relative;
-    box-shadow: var(--shadow-light);
-    transition: background-color var(--transition-speed) var(--animation-easing), box-shadow var(--transition-speed) var(--animation-easing);
-}
-
-[data-theme="dark"] .modal-content {
-    background-color: var(--color-background-dark);
-    color: var(--color-text-light);
-    box-shadow: var(--shadow-dark);
-}
-
-/* Modal Heading */
-.modal-content h3 {
-    margin-bottom: var(--spacing-md);
-    font-size: var(--font-size-lg);
-    color: var(--color-text);
-}
-
-[data-theme="dark"] .modal-content h3 {
-    color: var(--color-text-light);
-}
-
-/* Modal Paragraph */
-.modal-content p {
-    font-size: var(--font-size-md);
-    color: var(--color-text);
-}
-
-[data-theme="dark"] .modal-content p {
-    color: var(--color-text-light);
-}
-
-/* Modal Close Button */
-.modal-close {
-    position: absolute;
-    top: var(--spacing-sm);
-    right: var(--spacing-sm);
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--color-text);
-    transition: color var(--transition-speed) var(--animation-easing);
-}
-
-[data-theme="dark"] .modal-close {
-    color: var(--color-text-light);
-}
-
-.modal-close:hover, .modal-close:focus {
-    color: var(--color-accent-hover);
-    outline: none;
-}
-
-/* FadeIn Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-/* =============================== 12. Back-to-Top Button =============================== */
+/* =============================== 11. Back-to-Top Button =============================== */
 #back-to-top {
     position: fixed;
-    bottom: var(--spacing-xl);
-    right: var(--spacing-xl);
+    bottom: var(--spacing-xl); /* 32px */
+    right: var(--spacing-xl);  /* 32px */
     background-color: var(--color-accent);
     color: var(--color-text-light);
     border: none;
@@ -894,12 +992,14 @@ form input.invalid, form textarea.invalid {
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
-    transition: opacity var(--transition-speed) var(--animation-easing), visibility var(--transition-speed) var(--animation-easing), transform var(--transition-speed) var(--animation-easing);
+    transition: opacity var(--transition-speed) var(--transition-easing), 
+                visibility var(--transition-speed) var(--transition-easing), 
+                transform var(--transition-speed) var(--transition-easing);
     z-index: var(--z-index-header);
     font-size: 1.5rem;
     animation: float 3s ease-in-out infinite;
-    width: 50px; /* Ensures equal width and height */
-    height: 50px;
+    width: 3.75rem; /* 60px */
+    height: 3.75rem; /* 60px */
 }
 
 #back-to-top.visible {
@@ -910,23 +1010,24 @@ form input.invalid, form textarea.invalid {
 
 #back-to-top:hover, #back-to-top:focus {
     background-color: var(--color-accent-hover);
-    transform: translateY(-2px);
+    transform: translateY(-0.25rem); /* -4px */
     outline: none;
 }
 
 /* Float Animation */
 @keyframes float {
     0% { transform: translateY(0); }
-    50% { transform: translateY(-5px); }
+    50% { transform: translateY(-0.625rem); } /* -10px */
     100% { transform: translateY(0); }
 }
 
-/* =============================== 13. Footer =============================== */
+/* =============================== 12. Footer =============================== */
 footer {
     padding: var(--spacing-lg) 0;
     background-color: var(--color-background-light);
     position: relative;
     overflow: hidden;
+    transition: background-color var(--transition-speed) var(--transition-easing);
 }
 
 [data-theme="dark"] footer {
@@ -938,9 +1039,10 @@ footer .container {
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-md);
+    max-width: 75rem; /* 1200px */
+    margin: 0 auto;
 }
 
-/* TrustLogo in Footer */
 .ssl-trust-logo {
     display: flex;
     justify-content: center;
@@ -949,9 +1051,10 @@ footer .container {
 }
 
 .ssl-trust-logo img {
-    height: 42px;
+    height: 3.125rem; /* 50px */
     width: auto;
-    transition: transform var(--transition-speed) var(--animation-easing), filter var(--transition-speed) var(--animation-easing);
+    transition: transform var(--transition-speed) var(--transition-easing), 
+                filter var(--transition-speed) var(--transition-easing);
 }
 
 .ssl-trust-logo img:hover, .ssl-trust-logo img:focus {
@@ -959,7 +1062,6 @@ footer .container {
     filter: brightness(1.2);
 }
 
-/* Footer Links */
 .footer-links {
     display: flex;
     gap: var(--spacing-md);
@@ -969,28 +1071,134 @@ footer .container {
 .footer-links a {
     font-size: var(--font-size-sm);
     color: var(--color-text);
-    transition: color var(--transition-speed) var(--animation-easing);
+    transition: color var(--transition-speed) var(--transition-easing);
+}
+
+[data-theme="dark"] .footer-links a {
+    color: var(--color-text-light);
 }
 
 .footer-links a:hover, .footer-links a:focus {
     color: var(--color-accent-hover);
 }
 
-/* Social Links */
 .social-links {
     display: flex;
     gap: var(--spacing-sm);
 }
 
 .social-links a {
-    font-size: 1.25rem;
+    font-size: 1.75rem; /* 28px */
     color: var(--color-text);
-    transition: color var(--transition-speed) var(--animation-easing), transform var(--transition-speed) var(--animation-easing);
+    transition: color var(--transition-speed) var(--transition-easing), 
+                transform var(--transition-speed) var(--transition-easing);
+}
+
+[data-theme="dark"] .social-links a {
+    color: var(--color-text-light);
 }
 
 .social-links a:hover, .social-links a:focus {
     color: var(--color-accent-hover);
-    transform: scale(1.2);
+    transform: scale(1.3);
+}
+
+/* =============================== 13. Modals =============================== */
+/* Modal Overlay */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay for better focus */
+    display: flex; /* Always present to allow transitions */
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-index-modal);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-speed) var(--transition-easing),
+                visibility var(--transition-speed) var(--transition-easing);
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+    /* Remove display: flex toggle to allow smooth fade-in */
+    /* The display remains flex as set above */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: var(--color-background-light);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    max-width: 43.75rem; /* 700px */
+    width: 90%;
+    position: relative;
+    box-shadow: var(--shadow-light);
+    transition: background-color var(--transition-speed) var(--transition-easing),
+                box-shadow var(--transition-speed) var(--transition-easing);
+    transform: rotateY(0deg) scale(1);
+    animation: popIn 0.5s forwards;
+}
+
+[data-theme="dark"] .modal-content {
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light);
+    box-shadow: var(--shadow-dark);
+}
+
+.modal-content h3 {
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-lg);
+    color: var(--color-text);
+    text-transform: uppercase;
+    letter-spacing: 0.0625rem; /* 1px */
+}
+
+[data-theme="dark"] .modal-content h3 {
+    color: var(--color-text-light);
+}
+
+.modal-content p {
+    font-size: var(--font-size-md);
+    color: var(--color-text);
+    line-height: 1.8;
+    transition: color var(--transition-speed) var(--transition-easing);
+}
+
+[data-theme="dark"] .modal-content p {
+    color: var(--color-text-light);
+}
+
+/* Modal Close Button */
+.modal-close {
+    position: absolute;
+    top: var(--spacing-sm); /* 5px */
+    right: var(--spacing-sm); /* 5px */
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--color-text);
+    transition: color var(--transition-speed) var(--transition-easing);
+}
+
+[data-theme="dark"] .modal-close {
+    color: var(--color-text-light);
+}
+
+.modal-close:hover, .modal-close:focus {
+    color: var(--color-accent-hover);
+    outline: none;
+}
+
+/* Pop-In Animation for Modal Content */
+@keyframes popIn {
+    from { transform: rotateY(-10deg) scale(0.9); opacity: 0; }
+    to { transform: rotateY(0deg) scale(1); opacity: 1; }
 }
 
 /* =============================== 14. Tooltip Styles =============================== */
@@ -1005,15 +1213,15 @@ footer .container {
     position: absolute;
     bottom: 125%; /* Position above the element */
     left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--color-text-light);
-    color: var(--color-text);
+    transform: translateX(-50%) scale(0.9);
+    background-color: var(--color-tooltip-background);
+    color: var(--color-tooltip-text);
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--border-radius);
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
-    transition: opacity var(--transition-speed) var(--animation-easing), visibility var(--transition-speed) var(--animation-easing);
+    transition: opacity var(--transition-speed) var(--transition-easing), transform var(--transition-speed) var(--transition-easing), visibility var(--transition-speed) var(--transition-easing);
     z-index: var(--z-index-tooltip);
     font-size: var(--font-size-xs);
 }
@@ -1021,270 +1229,232 @@ footer .container {
 .tooltip:hover::after, .tooltip:focus::after {
     opacity: 1;
     visibility: visible;
+    transform: translateX(-50%) scale(1);
 }
 
 [data-theme="dark"] .tooltip::after {
-    background-color: var(--color-text);
-    color: var(--color-text-light);
+    background-color: var(--color-tooltip-background);
+    color: var(--color-tooltip-text);
 }
 
 /* =============================== 15. Scrollbar Styles =============================== */
-/* Custom Scrollbar */
+/* Custom Scrollbar for Webkit Browsers */
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 1rem; /* 16px */
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--color-background-light);
+    background: var(--color-scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--color-accent);
-    border-radius: 6px;
-    border: 3px solid var(--color-background-light);
+    background: linear-gradient(to bottom, #FF6F3C, #e65c2d);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 0.5rem; /* 8px */
+    border: 0.25rem solid var(--color-scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color-accent-hover);
+    background-color: var(--color-scrollbar-thumb-hover);
 }
 
+/* Custom Scrollbar for Firefox */
 body {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-accent) var(--color-background-light);
+    scrollbar-color: var(--color-scrollbar-thumb) var(--color-scrollbar-track);
 }
 
-/* =============================== 16. Responsive Design =============================== */
-/* Large Devices (Desktops, 1200px and up) */
-@media (min-width: 1200px) {
-    #services .service-grid, #why-choose-us .benefits-list {
-        grid-template-columns: repeat(3, 1fr);
-    }
+[data-theme="dark"] body {
+    scrollbar-color: var(--color-scrollbar-thumb) var(--color-background-dark);
 }
 
-/* Medium Devices (Tablets, 768px to 1199px) */
-@media (max-width: 1199px) {
-    /* Adjust Service and Benefit Grid */
-    #services .service-grid, #why-choose-us .benefits-list {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    }
-
-    /* Adjust Hero Text */
-    #hero h1 {
-        font-size: clamp(2rem, 5vw, 2.5rem);
-    }
-
-    #hero p {
-        font-size: clamp(1rem, 2.5vw, 1rem);
-    }
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: var(--color-background-dark);
 }
 
-/* Small Devices (Mobile, 767px and below) */
-@media (max-width: 767px) {
-    /* Navigation Menu */
-    .nav-menu {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--spacing-md);
-        display: none;
-    }
-
-    .nav-menu.active {
-        display: flex;
-    }
-
-    .nav-toggle {
-        display: flex;
-    }
-
-    /* CTA Buttons */
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .cta-buttons .btn, .cta-buttons .btn-secondary {
-        width: 100%;
-        text-align: center;
-    }
-
-    /* Service and Benefit Cards Padding */
-    .service-card, .glass-card, .benefits-list li {
-        padding: var(--spacing-md);
-    }
-
-    /* Adjust Hero Padding */
-    #hero {
-        padding-top: calc(60px + var(--spacing-md));
-    }
-
-    /* Adjust Hero Text */
-    #hero h1 {
-        font-size: clamp(1.75rem, 5vw, 2rem);
-    }
-
-    #hero p {
-        font-size: clamp(0.875rem, 2.5vw, 0.875rem);
-    }
-
-    /* Footer Layout */
-    footer .container {
-        flex-direction: column;
-        gap: var(--spacing-md);
-    }
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background-color: var(--color-scrollbar-thumb);
+    border: 0.25rem solid var(--color-background-dark);
 }
 
-/* =============================== 17. Animations and Micro-Interactions =============================== */
+/* =============================== 16. Animations and Micro-Interactions =============================== */
+/* FadeIn Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
 /* FadeInUp Animation */
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(1.25rem); } /* 20px */
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Pulse Animation for Hover Effects */
+/* RotateIn Animation */
+@keyframes rotateIn {
+    from { transform: translateY(-1.25rem) rotateY(-10deg); opacity: 0; } /* -20px, -10deg */
+    to { transform: translateY(0) rotateY(0deg); opacity: 1; }
+}
+
+/* Pulse Animation */
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(255, 111, 60, 0.7); }
-    70% { box-shadow: 0 0 0 10px rgba(255, 111, 60, 0); }
+    70% { box-shadow: 0 0 0 2.5rem rgba(255, 111, 60, 0); } /* 40px */
     100% { box-shadow: 0 0 0 0 rgba(255, 111, 60, 0); }
 }
 
-.service-card:hover, .glass-card:hover {
+/* Apply Pulse Animation Carefully to Avoid Conflicts */
+.service-card:hover, .benefits-list li:hover,
+.glass-card:hover {
     animation: pulse 2s infinite;
+    /* Removed conflicting transform effects to prevent jitter */
+    /* If transform is needed, consider using different animation or limit pulse */
 }
 
-/* =============================== 18. Accessibility Enhancements =============================== */
-/* Visually Hidden Class */
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-/* Focus States */
-a:focus, button:focus, input:focus, textarea:focus {
+/* =============================== 17. Accessibility Improvements =============================== */
+/* Focus Indicators for All Clickable Elements */
+a:focus, button:focus, .service-card:focus, .benefits-list li:focus, 
+.accordion-button:focus, .submit-btn:focus, #back-to-top:focus, .modal-close:focus {
     outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+    transition: outline 0.3s ease-in-out, outline-offset 0.3s ease-in-out;
+}
+
+/* Remove Conflicting Focus Styles */
+button:focus, .submit-btn:focus,
+a:focus {
+    /* These are already handled above */
+}
+
+/* Gradient Outline for Focus - Optional Enhancement */
+a:focus, button:focus, .service-card:focus, .benefits-list li:focus,
+.accordion-button:focus, .submit-btn:focus, #back-to-top:focus, .modal-close:focus {
+    outline: 3px solid;
+    outline-image: linear-gradient(45deg, #FF6F3C, #6F42C1) 1;
     outline-offset: 2px;
 }
 
-/* =============================== 19. Future-Proofing and Interconnectedness =============================== */
-/* Utility Classes */
-.u-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* =============================== 18. Responsive Design =============================== */
+/* Large Devices (Desktops, 1400px and up) */
+/* Already handled in Part 1 */
+
+/* Medium Devices (Desktops, 1200px to 1399px) */
+/* Already handled in Part 1 */
+
+/* Tablets (768px to 1199px) */
+/* Already handled in Part 1 */
+
+/* Small Devices (Mobile, 767px and below) */
+/* Already handled in Part 1 */
+
+/* =============================== 19. Utility Classes =============================== */
+/* Glassmorphism Effect */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.u-flex {
-    display: flex;
+/* Text Reveal Effect */
+.reveal-text {
+    position: relative;
+    color: transparent;
+    animation: reveal 1.5s ease forwards;
 }
 
-.u-flex-column {
-    flex-direction: column;
-}
-
-.u-gap-md {
-    gap: var(--spacing-md);
-}
-
-.u-margin-top-lg {
-    margin-top: var(--spacing-lg);
-}
-
-.u-padding-md {
-    padding: var(--spacing-md);
-}
-
-/* Reusable Button Styles */
-.btn, .btn-secondary {
-    display: inline-block;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius);
-    font-size: var(--font-size-md);
-    cursor: pointer;
-    transition: background-color var(--transition-speed) var(--animation-easing), transform var(--transition-speed) var(--animation-easing), box-shadow var(--transition-speed) var(--animation-easing);
-    text-align: center;
-}
-
-.btn {
+.reveal-text::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
     background-color: var(--color-accent);
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: reveal-text 1.5s ease forwards;
+}
+
+@keyframes reveal {
+    to { color: var(--color-text); }
+}
+
+@keyframes reveal-text {
+    50% { transform: scaleX(1); }
+    100% { transform: scaleX(0); transform-origin: right; }
+}
+
+/* Hover Glow Effect */
+.glow-on-hover {
+    transition: all 0.3s ease-in-out;
+}
+
+.glow-on-hover:hover {
+    box-shadow: 0 0 15px var(--color-accent);
+}
+
+/* Animated Underline */
+.animated-underline {
+    position: relative;
+}
+
+.animated-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-accent);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.animated-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+/* =============================== 20. Accessibility Enhancements =============================== */
+/* Ensure sufficient color contrast */
+:root {
+    /* Already moved tooltip variables to :root in Part 1 */
+    /* No additional variables needed here */
+}
+
+/* Skip to Content Link */
+.skip-to-content {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-accent);
     color: var(--color-text-light);
-    border: none;
-    box-shadow: var(--shadow-light);
+    padding: 0.5rem 1rem;
+    z-index: 10000;
+    transition: top 0.3s ease-in-out;
 }
 
-.btn:hover, .btn:focus {
-    background-color: var(--color-accent-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-dark);
-    outline: none;
+.skip-to-content:focus {
+    top: 0;
 }
 
-.btn-secondary {
-    background-color: transparent;
-    color: var(--color-accent);
-    border: var(--border-width) solid var(--color-accent);
-    box-shadow: none;
-}
-
-.btn-secondary:hover, .btn-secondary:focus {
-    background-color: var(--color-accent-hover);
-    color: var(--color-text-light);
-    border-color: var(--color-accent-hover);
-    outline: none;
-}
-
-/* =============================== 20. Print Styles =============================== */
-@media print {
-    header, footer, .nav-toggle, #back-to-top, .modal, .no-print {
-        display: none;
+/* =============================== 21. Media Queries for Future Enhancements =============================== */
+/* Example for future sections */
+@media (min-width: 1600px) {
+    /* Styles for larger screens */
+    /* Example: Increase container max-width */
+    .container {
+        max-width: 1600px;
     }
 
-    body {
-        background-color: #ffffff;
-        color: #000000;
-    }
-
-    a[href^="http"]:after {
-        content: " (" attr(href) ")";
-    }
-}
-
-/* =============================== 21. Responsive Typography Enhancements =============================== */
-@media (min-width: 768px) {
+    /* Example: Adjust font sizes or element dimensions for larger screens */
     h1 {
-        font-size: clamp(2.5rem, 5vw, 4.5rem);
+        font-size: 3rem; /* Increase heading size */
     }
-    h2 {
-        font-size: clamp(2rem, 4vw, 3.5rem);
-    }
-    h3 {
-        font-size: clamp(1.5rem, 3vw, 2.5rem);
-    }
-    p {
-        font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-    }
+
+    /* Add any additional styles needed for larger screens here */
 }
 
-/* =============================== 22. Additional Enhancements =============================== */
-/* Tooltip Enhancements */
-.tooltip::after {
-    background-color: var(--color-text-light);
-    color: var(--color-text);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: var(--border-radius);
-    white-space: nowrap;
-    font-size: var(--font-size-xs);
-}
 
-[data-theme="dark"] .tooltip::after {
-    background-color: var(--color-text);
-    color: var(--color-text-light);
-}
 
-/* =============================== 23. Future-Proofing Final Notes =============================== */
-/* Ensure that any new components or elements adhere to the established design system and utilize CSS variables for consistency. Maintain a modular approach to CSS to facilitate scalability and ease of maintenance. */
